@@ -1,0 +1,73 @@
+<!doctype html>
+<html class="no-js" lang="en" ng-app="cryptextApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Cryptext</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.16/angular.min.js"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse navbar-xs navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Cryptext</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">AES</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <div class="container main-controller" ng-controller="MainController" ng-cloak>
+      <form name="form" ng-submit="processForm()" novalidate>
+        <div class="row">
+          <div class="form-group col-xs-12">
+            <textarea rows="8" class="form-control" placeholder="Enter plain text or cypher text" ng-model="io" required></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-sm-6 form-item">
+              <div class="input-group">
+                <input type="{{passphraseInputType()}}" class="form-control" placeholder="Enter passphrase" 
+                       ng-model="passphrase" required>
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button" ng-click="toggleShowPassphrase($event)">
+                    <i class="fa" ng-class="{'fa-eye': showPassphrase, 'fa-eye-slash': !showPassphrase}"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-3 form-item">
+              <button class="btn btn-primary btn-block" type="submit" ng-disabled="form.$invalid">
+                <i class="fa" ng-class="{'fa-lock': plaintext, 'fa-unlock': !plaintext}"></i>
+                <span ng-show="plaintext">Encrypt</span>
+                <span ng-hide="plaintext">Decrypt</span>
+              </button>
+            </div>
+            <div class="col-sm-3 form-item">
+              <button class="btn btn-default btn-block" type="button" ng-disabled="formEmpty()"
+                      ng-really-message="Are you sure?" ng-really-click="clear($event)">Clear</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/vendor/crypt.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
