@@ -1,4 +1,4 @@
-var myApp = angular.module('cryptApp',[]);
+var myApp = angular.module('cryptextApp',[]);
   
 myApp.controller('MainController', ['$scope', function($scope) {
   var base64Matcher = new RegExp("^U2FsdGVkX1");
