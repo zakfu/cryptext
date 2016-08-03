@@ -6,6 +6,7 @@
     <title>Cryptext</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/main.css">
@@ -34,7 +35,7 @@
       <form name="form" ng-submit="processForm()" novalidate>
         <div class="row">
           <div class="form-group col-xs-12">
-            <textarea rows="8" class="form-control" placeholder="Enter plain text or cypher text" ng-model="io" required></textarea>
+            <textarea rows="8" wrap="soft" class="form-control" placeholder="Enter plain text or cypher text" ng-model="io" required></textarea>
           </div>
         </div>
         <div class="row">
