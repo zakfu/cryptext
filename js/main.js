@@ -1,6 +1,39 @@
-var myApp = angular.module('cryptextApp',[]);
-  
-myApp.controller('MainController', ['$scope', function($scope) {
+/* global angular */
+/* global CryptoJS */
+
+var myApp = angular.module('cryptextApp',['ngRoute']);
+
+myApp.config(function($routeProvider) {
+  $routeProvider
+    .when('/aes', {
+      templateUrl : 'templates/aes.html',
+      controller  : 'AESController'
+    })
+    .when('/hash', {
+      templateUrl : 'templates/hash.html',
+      controller  : 'HashController'
+    })
+    .otherwise({
+      redirectTo: '/aes'
+    })
+});
+
+myApp.controller('HashController', ['$scope', function($scope) {
+  $scope.methods = ["MD5", "SHA1", "SHA256", "RIPEMD160"];
+
+  $scope.$watch('input', function(n,o) {
+    if (n == null || n == '') {
+      $scope.hashes = null;
+    } else {
+      $scope.hashes = {};
+    }
+    angular.forEach($scope.methods, function(method) {
+      $scope.hashes[method] = CryptoJS[method](n).toString(CryptoJS.enc.Hex);
+    });
+  });
+}]);
+
+myApp.controller('AESController', ['$scope', function($scope) {
   var base64Matcher = new RegExp("^U2FsdGVkX1");
 
   $scope.io = '';
