@@ -1,0 +1,33 @@
+<form name="form" ng-submit="processForm()" novalidate>
+  <div class="row">
+    <div class="form-group col-xs-12">
+      <textarea rows="8" wrap="soft" class="form-control" placeholder="Enter plain text or cypher text" ng-model="io" required></textarea>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <div class="col-sm-6 form-item">
+        <div class="input-group">
+          <input type="{{passphraseInputType()}}" class="form-control" placeholder="Enter passphrase" 
+                 ng-model="passphrase" required>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="toggleShowPassphrase($event)">
+              <i class="fa" ng-class="{'fa-eye': showPassphrase, 'fa-eye-slash': !showPassphrase}"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+      <div class="col-sm-3 form-item">
+        <button class="btn btn-primary btn-block" type="submit" ng-disabled="form.$invalid">
+          <i class="fa" ng-class="{'fa-lock': plaintext, 'fa-unlock': !plaintext}"></i>
+          <span ng-show="plaintext">Encrypt</span>
+          <span ng-hide="plaintext">Decrypt</span>
+        </button>
+      </div>
+      <div class="col-sm-3 form-item">
+        <button class="btn btn-default btn-block" type="button" ng-disabled="formEmpty()"
+                ng-really-message="Are you sure?" ng-really-click="clear($event)">Clear</button>
+      </div>
+    </div>
+  </div>
+</form>

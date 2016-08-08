@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="form-group col-xs-12">
+    <textarea rows="2" wrap="soft" class="form-control" placeholder="Enter input plain text" ng-model="input"></textarea>
+  </div>
+</div>
+<div ng-show="hashes" class="row" ng-repeat="(method, hash) in hashes">
+  <div class="col-xs-12">
+    <h5>{{method}}</h5>  
+    <pre>{{hash}}</pre>
+  </div>
+</div>
